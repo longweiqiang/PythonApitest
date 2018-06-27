@@ -9,17 +9,24 @@
 import requests
 from utils.config import Config, CONFIG_FILE, INICONFIG_FILE
 from utils.config import IniConfig
+from utils.dbconfig import database
 
-URL = Config().get('URL')
-PARAMS = Config().get('PARAMS')
-print(PARAMS)
+# URL = Config().get('URL')
+# PARAMS = Config().get('PARAMS')
+# print(PARAMS)
+#
+# te = IniConfig().get('test1','mask')
+# print(te)
+#
+#
+# r = requests.get(URL+'/credit-app/index',params=PARAMS)
+#
+# print(r.url)
+# print(r.status_code)
+# print(r.text)
 
-te = IniConfig().get('test1','mask')
-print(te)
 
 
-r = requests.get(URL+'/credit-app/index',params=PARAMS)
-
-print(r.url)
-print(r.status_code)
-print(r.text)
+mh = database()
+sql = "select * from user_info where user_phone =17621717316"
+print(mh.fetch_all(sql))
