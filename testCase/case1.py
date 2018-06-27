@@ -5,11 +5,13 @@
 # @Site    : 
 # @File    : case1.py
 # @Software: PyCharm
+import json
 
 import requests
 from utils.config import Config, CONFIG_FILE, INICONFIG_FILE
 from utils.config import IniConfig
 from utils.dbconfig import database
+from utils.dbtest import MysqldbHelper
 
 # URL = Config().get('URL')
 # PARAMS = Config().get('PARAMS')
@@ -26,7 +28,18 @@ from utils.dbconfig import database
 # print(r.text)
 
 
-
 mh = database()
-sql = "select * from user_info where user_phone =17621717316"
-print(mh.fetch_all(sql))
+sql = "select id from user_info where user_phone =17621717316"
+a = mh.fetch_one(sql)
+# print(a)
+# print(type(a))
+# b = json.dumps(a)
+
+b = a.values()
+
+print(b)
+print(a.get("id"))
+print(a["id"])
+
+
+

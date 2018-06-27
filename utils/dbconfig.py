@@ -75,6 +75,17 @@ class database:
                 res = False
         return res
 
+    # 获取查询结果集
+    def fetch_one(self, sql):
+        res = ''
+        if (self._conn):
+            try:
+                self._cursor.execute(sql)
+                res = self._cursor.fetchone()
+            except Exception:
+                res = False
+        return res
+
     def update(self, sql):
         flag = False
         if (self._conn):
