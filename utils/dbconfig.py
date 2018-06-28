@@ -10,7 +10,12 @@
 # name:mod_db.py
 '''
 使用方法：1.在主程序中先实例化DB Mysql数据库操作类。
-        2.使用方法:db=database()  db.fetch_all("sql")
+        2.使用方法:
+            db=database()
+            db.fetch_all("sql")
+        3.获取对应的字段数据:
+            print(db.get("id"))
+            print(db["id"])
 '''
 import MySQLdb
 import MySQLdb.cursors
