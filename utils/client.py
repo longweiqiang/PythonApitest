@@ -55,7 +55,7 @@ class HTTPClient(object):
         response = self.session.request(method=self.method, url=self.url, params=params, data=data, **kwargs)
         response.encoding = 'utf-8'
         logger.debug('{0} {1}'.format(self.method, self.url))
-        logger.debug('请求成功: {0}\n{1}'.format(response, response.text))
+        logger.debug('请求成功:接口返回的code为:{0}\n接口返回的response为:{1}'.format(response, response.text))
         return response
 
 

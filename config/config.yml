@@ -1,4 +1,4 @@
-URL: 'http://prod-super.xianjinxia.com'
+URL: 'http://47.96.31.154:26000'
 
 
 PARAMS:
@@ -20,6 +20,8 @@ login_url: '/credit-user/login'
 
 
 index_url: '/credit-app/index'
+
+risk_url: '/refactor/risk/riskTokenSend'
 
 
 

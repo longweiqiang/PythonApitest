@@ -12,11 +12,11 @@ import configparser
 BASE_PATH = os.path.split(os.path.dirname(os.path.abspath(__file__)))[0]
 INICONFIG_FILE = os.path.join(BASE_PATH, 'config', 'config.ini')
 
-print(INICONFIG_FILE)
+# print(INICONFIG_FILE)
 
 config=configparser.ConfigParser()
 config.read(INICONFIG_FILE)
 
 
-c = config.get("test1","ip")
-print(c)
+# c = config.get("test1","ip")
+# print(c)

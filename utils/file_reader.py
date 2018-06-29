@@ -10,6 +10,8 @@ import yaml
 import os
 import configparser
 from xlrd import open_workbook
+from utils.test_ini import config
+
 """
 文件读取。YamlReader读取yaml文件，ExcelReader读取excel。
 """
