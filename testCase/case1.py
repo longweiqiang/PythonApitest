@@ -5,7 +5,6 @@
 # @Site    : 
 # @File    : case1.py
 # @Software: PyCharm
-import json
 
 import requests
 from utils.config import Config
@@ -38,6 +37,6 @@ print(j_1)
 mh = database()
 sql = "select id from user_info where user_phone =17621717316"
 a = mh.fetch_one(sql)
-
+print(a.get("id"))
 
 

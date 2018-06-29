@@ -1,5 +1,6 @@
 URL: 'http://prod-super.xianjinxia.com'
 
+
 PARAMS:
   clientType: android
   appVersion: 3.3.0
@@ -11,3 +12,15 @@ PARAMS:
   packageId: com.innext.xjx
   appMarket: xjx-MySelf
   merchantNumber: cjxjx
+  username: 17621717316
+  password: a123456
+
+
+login_url: '/credit-user/login'
+
+
+index_url: '/credit-app/index'
+
+
+
+
