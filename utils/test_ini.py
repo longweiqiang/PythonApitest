@@ -18,5 +18,5 @@ config=configparser.ConfigParser()
 config.read(INICONFIG_FILE)
 
 
-# c = config.get("test1","ip")
+# c = config.get("test1")
 # print(c)

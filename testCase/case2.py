@@ -6,23 +6,24 @@
 # @File    : case2.py
 # @Software: PyCharm
 
-import MySQLdb
+class A():
 
-# 打开数据库连接
-db = MySQLdb.connect("rm-bp1rc23s40ss8j9lwo.mysql.rds.aliyuncs.com",
-                     "user_test", "pmn4FIBzkaRsSIqQ", "03cashman", charset='utf8' )
+    def a_add_b(self):
+        a=10
+        b=20
+        self.S=a+b
+        print (self.S)
+        return self.S
 
-# 使用cursor()方法获取操作游标
-cursor = db.cursor()
+    def c_add_ab(self):
+        c=30
+        s=c+self.S
+        print ('s的值是:',s)
 
-# 使用execute方法执行SQL语句
-cursor.execute("select * from user_info where user_phone = 17621717316")
 
-# 使用 fetchone() 方法获取一条数据
-data = cursor.fetchone()
 
-print(data)
-print(type(data))
-
-# 关闭数据库连接
-db.close()
+t=A()
+#
+# print(t.a_add_b())
+#
+print(t.c_add_ab())

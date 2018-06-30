@@ -58,3 +58,6 @@ class IniConfig:
         config = self.config.get(name, element)
         return config
 
+    # def set(self, name, element):
+
+
