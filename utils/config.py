@@ -9,8 +9,13 @@
 """
 读取配置。这里配置文件用的yaml，也可用其他如XML,INI等，需在file_reader中添加相应的Reader进行处理。
 """
+import json
 import os
+import simplejson
+from requests import request
+
 from utils.file_reader import YamlReader,IniReader
+from utils.extractor import JMESPathExtractor
 import configparser
 
 # 通过当前文件的绝对路径，其父级目录一定是框架的base目录，然后确定各层的绝对路径。如果你的结构不同，可自行修改。
@@ -19,6 +24,7 @@ BASE_PATH = os.path.split(os.path.dirname(os.path.abspath(__file__)))[0]
 CONFIG_FILE = os.path.join(BASE_PATH, 'config', 'config.yml')
 CONFIG_FILE1 = os.path.join(BASE_PATH, 'config', 'config1.yml')
 INICONFIG_FILE = os.path.join(BASE_PATH, 'config', 'config.ini')
+JSONCONFIG_FILE = os.path.join(BASE_PATH, 'config', 'config.json')
 DATA_PATH = os.path.join(BASE_PATH, 'data')
 DRIVER_PATH = os.path.join(BASE_PATH, 'drivers')
 LOG_PATH = os.path.join(BASE_PATH, 'log')
@@ -43,12 +49,10 @@ class Config:
         """
         return self.config[index].get(element)
 
+
+
+
 class IniConfig:
-    # def __init__(self, inif=INICONFIG_FILE):
-    #     self.config = IniReader(inif).iniConfig
-    #
-    # def get(self, name, element):
-    #     return self.config.get(name,element)
     def __init__(self, inif=INICONFIG_FILE):
         self.iniconfig = IniReader.iniConfig
         self.config = configparser.ConfigParser()
@@ -59,5 +63,38 @@ class IniConfig:
         return config
 
     # def set(self, name, element):
+
+
+
+class JsonConfig():
+    """
+    获取json配置文件方法
+    """
+    def __init__(self, jsonpath=JSONCONFIG_FILE):
+        """
+        :param jsonpath: 配置文件的路径
+        """
+        self._j = JMESPathExtractor()
+        self._jsonConfig = YamlReader(jsonpath).data
+        self._content = open(jsonpath, encoding='utf-8')
+
+    def get_jsondata(self, element=None):
+        """
+        :param element: 需要获取json的对应key;如data.item.loginStatus;此字段为空时,默认返回字符串中所有内容
+        :return: 返回对应的字符串数据
+        """
+        if element==None:
+            self.rights = json.load(self._content)
+        else:
+            self._all_rights = json.load(self._content)
+            # 把self._all_rights的值转成字符串,这样下面的self._j.extract方法才能识别
+            self.contents = json.dumps(self._all_rights)
+            self.rights = self._j.extract(query=element, body=self.contents)
+        return self.rights
+
+
+
+
+
 
 

@@ -6,24 +6,12 @@
 # @File    : case2.py
 # @Software: PyCharm
 
-class A():
+i = 1
 
-    def a_add_b(self):
-        a=10
-        b=20
-        self.S=a+b
-        print (self.S)
-        return self.S
-
-    def c_add_ab(self):
-        c=30
-        s=c+self.S
-        print ('s的值是:',s)
-
-
-
-t=A()
-#
-# print(t.a_add_b())
-#
-print(t.c_add_ab())
+while i<=9:
+    j = 1
+    while j<=i:
+        print("x*y=z ", end='')
+        j += 1
+    print('')
+    i += 1

@@ -1,3 +1,4 @@
+# 测试地址
 URL: 'http://47.96.31.154:26000'
 
 
@@ -16,10 +17,14 @@ PARAMS:
   password: a123456
 
 
+# xjx登录api
 login_url: '/credit-user/login'
 
-
+# xjx请求首页api
 index_url: '/credit-app/index'
+
+# xjx小额借款api
+test_url: '/refactoruser/getParams'
 
 risk_url: '/refactor/risk/riskTokenSend'
 
