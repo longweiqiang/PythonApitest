@@ -1,0 +1,17 @@
+# 测试地址
+
+
+# xjx登录api
+login_url: '/credit-user/login'
+
+# xjx请求首页api
+index_url: '/credit-app/index'
+
+# xjx小额借款api
+borrowMoney_url: '/credit-loan/get-confirm-loan'
+
+risk_url: '/refactor/risk/riskTokenSend'
+
+
+
+
