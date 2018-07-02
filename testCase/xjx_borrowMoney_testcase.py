@@ -13,7 +13,7 @@ from testCase.xjx_login_testcase import Test_Xjx_login
 from utils.client import HTTPClient
 from utils.config import Config, JsonConfig
 import unittest
-
+from utils.dbconfig import database
 from utils.extractor import JMESPathExtractor
 from utils.log import logger
 
@@ -30,10 +30,13 @@ class Test_Xjx_BorrowMoney(unittest.TestCase):
     URL = Config().get('URL')
     logger.info('请求的URL为:{0}'.format(URL))
     BorrowMoney_URL = Config().get('borrowMoney_url')
+    addBorrowMoney_URL = Config().get('addBorrowMoney_url')
 
     get_jsondata = Config(config='borrowMoney.yml')
     borrow_money = get_jsondata.get('borrowMoney')
     period = get_jsondata.get('period')
+
+
 
 
 
@@ -45,6 +48,7 @@ class Test_Xjx_BorrowMoney(unittest.TestCase):
         # 获取json配置文件数据
         self.jsondata = self.xjx_login
         self.j = JMESPathExtractor()
+        self.get_dbdata = database()
         self.jsondata['money'] = self.borrow_money
         self.jsondata['period'] = self.period
 
@@ -69,6 +73,31 @@ class Test_Xjx_BorrowMoney(unittest.TestCase):
         card_no_lastFour = self.j.extract(query='data.item.card_no_lastFour', body=res.text)
         # # 判断card_no_lastFour的值是否一致
         self.assertEqual(card_no_lastFour, '0002')
+
+    def test_xjx_borrowMoney2(self):
+        addBorrowMoney = self.URL + self.addBorrowMoney_URL
+        logger.info('开始执行新增app借款接口,caseName:test_xjx_borrowMoney2')
+        self.client = HTTPClient(url=addBorrowMoney, method='POST')
+        logger.info('请求的api路径为:{0}'.format(self.addBorrowMoney_URL))
+        logger.info('拼接后的请求路径为:{0}'.format(addBorrowMoney))
+        self.jsondata['speedStatus'] = ''
+        self.jsondata['pay_password'] = '000000'
+
+        res = self.client.send(data=self.jsondata)
+        logger.info('返回的参数为:{0}'.format(res.text))
+        logger.info('接口入参为:query--{0}'.format(self.jsondata))
+
+        self.assertIn('成功', res.text)
+
+        item_message = self.j.extract(query='data.item.message', body=res.text)
+        self.assertEqual(item_message, '申请成功')
+        order_id = self.j.extract(query='data.item.order_id', body=res.text)
+        logger.info('页面返回的order_id为:{0}'.format(order_id))
+        select_orderid = "select id from asset_borrow_order where user_id = '768093098' ORDER BY id DESC LIMIT 1"
+        logger.info('查询数据库数据的sql为:{0}'.format(select_orderid))
+        db_order_id = self.get_dbdata.fetch_one(select_orderid)
+        logger.info('查询数据库的数据,返回的order_id为:{0}'.format(db_order_id))
+
 
 if __name__ == '__main__':
     unittest.main()

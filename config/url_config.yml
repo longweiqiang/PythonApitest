@@ -1,5 +1,5 @@
 # 测试地址
-
+URL: 'http://120.55.40.158:26000'
 
 # xjx登录api
 login_url: '/credit-user/login'
@@ -7,8 +7,11 @@ login_url: '/credit-user/login'
 # xjx请求首页api
 index_url: '/credit-app/index'
 
-# xjx小额借款api
+# xjx小额借款api(前置)
 borrowMoney_url: '/credit-loan/get-confirm-loan'
+
+# xjx小额借款新增api
+addBorrowMoney_url: '/credit-loan/apply-loan'
 
 risk_url: '/refactor/risk/riskTokenSend'
 
