@@ -1,6 +1,9 @@
 # 测试地址
 URL: 'http://120.55.40.158:26000'
 
+#xjxback后台登录接口
+xjx_back_url: '/back/login'
+
 # xjx登录api
 login_url: '/credit-user/login'
 
@@ -12,6 +15,12 @@ borrowMoney_url: '/credit-loan/get-confirm-loan'
 
 # xjx小额借款新增api
 addBorrowMoney_url: '/credit-loan/apply-loan'
+
+# xjx大额借款前置api
+before_borrowMoney_url: '/cashman-web/service/loan/apply-loan'
+
+# xjx大额借款api
+borrowMoney_url: '/cashman-web/service/loan/confirm-loan'
 
 risk_url: '/refactor/risk/riskTokenSend'
 

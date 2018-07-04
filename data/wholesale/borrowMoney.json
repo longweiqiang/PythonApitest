@@ -1,0 +1,33 @@
+{
+    "headers": {
+        "Content-Type": "application/json",
+        "sessionid": "CE0BE49FB5E6D8488370F38E22963D2E"
+    },
+
+
+    "before_borrowMoney": {
+        "orderAmount": "3000",
+        "periods": "1",
+        "productId": "1"
+    },
+    "before_borrowMoney_assertlist": {
+        "code": "00",
+        "message": "成功",
+        "orderAmount": 3000,
+        "bankName": "中国农业银行",
+        "cardNoLastFour": "0002"
+    },
+
+
+    "borrowMoney": {
+        "buyCard": "n",
+        "loanUsage": "生活消费",
+        "orderAmount": "3000",
+        "payPassword": "000000",
+        "periods": "1",
+        "productId": "1",
+        "source": "01",
+        "speedCardId": "",
+        "terminal": "02"
+    }
+}

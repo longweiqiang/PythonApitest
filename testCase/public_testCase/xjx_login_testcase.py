@@ -34,9 +34,9 @@ class Test_Xjx_login(unittest.TestCase):
         self.assertIn('登录成功', res.text)
         self.sessionid = self.j.extract(query='data.item.sessionid', body=res.text)
         jsondata['sessionid'] = self.sessionid
-        logger.debug('该用户的sessionid为:{0}'.format(self.sessionid))
-        print('该用户的sessionid为:{0}'.format(self.sessionid))
-        return jsondata
+        logger.info('该用户的sessionid为:{0}'.format(self.sessionid))
+        # print('该用户的sessionid为:{0}'.format(self.sessionid))
+        return self.sessionid
 
 
 

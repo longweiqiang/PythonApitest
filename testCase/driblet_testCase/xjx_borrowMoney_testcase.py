@@ -5,11 +5,8 @@
 # @Site    : 
 # @File    : xjx_borrowMoney_testcase.py
 # @Software: PyCharm
-import json
 
-import requests
-
-from testCase.xjx_login_testcase import Test_Xjx_login
+from testCase.public_testCase.xjx_login_testcase import Test_Xjx_login
 from utils.client import HTTPClient
 from utils.config import Config, JsonConfig
 import unittest
@@ -22,7 +19,7 @@ from utils.log import logger
 
 # BorrowMoney_URL = Config().get('borrowMoney_url')
 
-# get_jsondata = JsonConfig(jsonpath='borrowMoney.json')
+# get_jsondata = JsonConfig(jsonpath='borrowMoney.wholesale')
 # borrow_money = get_jsondata.get_jsondata()
 # # print(borrow_money)
 
@@ -32,7 +29,10 @@ class Test_Xjx_BorrowMoney(unittest.TestCase):
     BorrowMoney_URL = Config().get('borrowMoney_url')
     addBorrowMoney_URL = Config().get('addBorrowMoney_url')
 
-    get_jsondata = Config(config='borrowMoney.yml')
+    data = JsonConfig().get_jsondata()
+    logger.info('data数据为:{0}'.format(data))
+
+    get_jsondata = Config(path='driblet', config='borrowMoney.yml')
     borrow_money = get_jsondata.get('borrowMoney')
     period = get_jsondata.get('period')
 
@@ -42,11 +42,13 @@ class Test_Xjx_BorrowMoney(unittest.TestCase):
 
 
     def setUp(self):
+        self.j = JMESPathExtractor()
         logger.info('开始执行测试前准备的数据,调用test_Xjx_login方法')
         self.xjx_login = Test_Xjx_login().test_Xjx_login()
-        logger.debug('测试前准备的数据为:{0}'.format(self.xjx_login))
+        self.data['sessionid'] = self.xjx_login
+        logger.debug('测试前准备的数据为:{0}'.format(self.data))
         # 获取json配置文件数据
-        self.jsondata = self.xjx_login
+        self.jsondata = self.data
         self.j = JMESPathExtractor()
         self.get_dbdata = database()
         self.jsondata['money'] = self.borrow_money

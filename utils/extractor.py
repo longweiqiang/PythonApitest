@@ -21,3 +21,10 @@ class JMESPathExtractor(object):
             return jmespath.search(query, json.loads(body))
         except Exception as e:
             raise ValueError("Invalid query: " + query + " : " + str(e))
+
+    def addextract(self, query=None, body=None):
+        json_data = json.dumps(body)
+        try:
+            return jmespath.search(query, json.loads(json_data))
+        except Exception as e:
+            raise ValueError("Invalid query: " + query + " : " + str(e))

@@ -11,7 +11,7 @@
 import json
 import os
 BASE_PATH = os.path.split(os.path.dirname(os.path.abspath(__file__)))[0]
-JSON_PATH = os.path.join(BASE_PATH, 'data', 'json', 'data.json')
+JSON_PATH = os.path.join(BASE_PATH, 'data', 'wholesale', 'data.wholesale')
 print(JSON_PATH)
 
 import time
@@ -34,7 +34,7 @@ def store(data):
 
 # def load():
 #     with open(JSON_PATH, 'a') as json_file:
-#         data = json.load(json_file)
+#         data = wholesale.load(json_file)
 #         return data
 
 
